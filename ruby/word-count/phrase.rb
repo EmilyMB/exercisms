@@ -2,9 +2,7 @@ class Phrase
   attr_reader :words
 
   def initialize(phrase)
-    phrase2 = phrase.gsub(/[^\w\,\'\s]/, "")
-    phrase5 = phrase2.split(/[\s\,]/)
-    @words = phrase5.select{ |word| word != "" }.map(&:downcase)
+    @words = parse(phrase)
   end
 
   def word_count
@@ -12,5 +10,12 @@ class Phrase
       hsh[word] += 1
       hsh
     end
+  end
+
+  private
+
+  def parse(phrase)
+    all_words = phrase.gsub(/[^\w\,\'\s]/, "").split(/[\s\,]/)
+    all_words.reject(&:empty?).map(&:downcase)
   end
 end
