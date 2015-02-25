@@ -17,7 +17,7 @@ class BobTests(unittest.TestCase):
     def test_shouting(self):
         self.assertEqual(
             'Whoa, chill out!',
-            bob.hey('WATCH OUT!')
+                bob.hey('WATCH OUT!')
         )
 
     def test_asking_a_question(self):
