@@ -1,5 +1,3 @@
-import re
-
 def hey(what):
     if(what.isupper()):
         return('Whoa, chill out!')
