@@ -6,39 +6,47 @@ class Robot
   end
 
   def reset
-    FactoryNames.remove_from_all_names(self.name) unless self.name.nil?
-    @name = FactoryNames.unique_name
-    FactoryNames.add_to_all_names(@name)
+    @name = FactoryNames.generate_name(self.name)
   end
 end
 
 module FactoryNames
-  def self.set_name_letters
+  extend self
+
+  def generate_name(current_name)
+    remove_from_all_names(current_name) unless current_name.nil?
+    unique_name
+  end
+
+  private
+
+  def set_name_letters
     ("A".."Z").to_a.shuffle[0..1].join
   end
 
-  def self.set_name_digits
+  def set_name_digits
     rand(1000).to_s.rjust(3, "0")
   end
 
-  def self.create_name
+  def create_name
     set_name_letters + set_name_digits
   end
 
-  def self.unique_name
+  def unique_name
     @all_names ||= []
     name = create_name
     while @all_names.include?(name)
       name = create_name
     end
-    return(name)
+    add_to_all_names(name)
+    name
   end
 
-  def self.add_to_all_names(name)
+  def add_to_all_names(name)
     @all_names.push(name)
   end
 
-  def self.remove_from_all_names(name)
+  def remove_from_all_names(name)
     @all_names.delete(name)
   end
 end

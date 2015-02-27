@@ -31,12 +31,12 @@ class RobotTest < MiniTest::Unit::TestCase
     # rubocop:enable Lint/AmbiguousRegexpLiteral
   end
 
-  def test_10000_names
+  def test_1000_names
     all = []
-    10000.times do
+    1000.times do
       robot = Robot.new
       all.push(robot.name)
     end
-    assert_equal 10000, all.uniq.count
+    assert_equal 1000, all.uniq.count
   end
 end
