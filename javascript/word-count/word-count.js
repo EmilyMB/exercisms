@@ -1,15 +1,11 @@
 function words(string) {
-  var wordArray = string.split(/[\s]+/);
-  var newArray = {};
+  var allWords = string.split(/[\s]+/);
+  var wordsCount = {};
 
-  wordArray.forEach(function(word) {
-    if (newArray[word] === undefined) {
-      newArray[word] = 1;
-    } else {
-      newArray[word] += 1;
-    }
+  allWords.forEach(function(word) {
+      wordsCount[word] = ++wordsCount[word] || 1;
   });
-  return(newArray)
+  return(wordsCount)
 }
 
 module.exports = words;
