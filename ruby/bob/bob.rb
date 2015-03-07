@@ -1,14 +1,14 @@
 class Bob
 
   def hey(phrase)
-    phrase.strip!
-    response(phrase)
+    clean_phrase = phrase.strip
+    response(clean_phrase)
   end
 
   private
 
   def response(phrase)
-    if all_caps?(phrase)
+    if shouting?(phrase)
       "Whoa, chill out!"
     elsif question?(phrase)
       "Sure."
@@ -19,7 +19,7 @@ class Bob
     end
   end
 
-  def all_caps?(phrase)
+  def shouting?(phrase)
     phrase == phrase.upcase && phrase =~ (/[a-zA-Z]/)
   end
 
