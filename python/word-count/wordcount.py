@@ -1,6 +1,6 @@
 def word_count(words):
     words = words.split()
     word_counts = {}
-    for i in range(0, len(words)):
-        word_counts[words[i]] = words.count(words[i])
+    for word in words:
+        word_counts[word] = words.count(word)
     return(word_counts)
