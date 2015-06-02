@@ -5,4 +5,4 @@ def square_of_sum(x):
     return sum(range(x+1))**2
 
 def sum_of_squares(x):
-    return reduce(lambda total, val: total+val**2, range(x+1))
+    return sum(k**2 for k in range(x+1))
