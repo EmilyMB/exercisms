@@ -1,7 +1,20 @@
 var dna = function(input) {
 
-  if (typeof input !== "undefined" && input.replace(/A|T|C|G/g,'') !== '') {
+  if (input && input.replace(/A|T|C|G/g,'') !== '') {
     throw 'Invalid input';
+  }
+
+  var countLetters = function() {
+    var letterCount = {A: 0, T: 0, C: 0, G: 0};
+
+    if (input) {
+      var allLetters = input.split('');
+
+      allLetters.forEach(function(letter) {
+        letterCount[letter] = ++letterCount[letter];
+      });
+    }
+    return letterCount;
   }
 
   return {
@@ -12,19 +25,6 @@ var dna = function(input) {
     histogram: function() {
       return countLetters();
     }
-  }
-
-  function countLetters() {
-    var letterCount = {A: 0, T: 0, C: 0, G: 0};
-
-    if (typeof input !== 'undefined') {
-      var allLetters = input.split('');
-
-      allLetters.forEach(function(letter) {
-        letterCount[letter] = ++letterCount[letter];
-      });
-    }
-    return letterCount;
   }
 };
 
