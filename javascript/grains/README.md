@@ -13,7 +13,7 @@ There are 64 squares on a chessboard.
 Write a program that shows:
 - how many grains were on each square, and
 - the total number of grains
-
+0**2 + 1**2 + 3**2 + 4**2 + 5**2
 
 ## For bonus points
 
