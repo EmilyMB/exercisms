@@ -3,6 +3,10 @@ var Age = function(seconds) {
   this.earthAge = seconds / 31557600.00;
 };
 
+var roundNumber = function(number) {
+  return Math.round(number * 100) / 100;
+};
+
 const ageInEarthYears = {
   'Earth': 1,
   'Mercury': 0.2408467,
@@ -20,7 +24,4 @@ Object.keys(ageInEarthYears).forEach(function(planet, index) {
   };
 });
 
-var roundNumber = function(number) {
-  return Math.round(number * 100) / 100;
-};
 module.exports = Age;
