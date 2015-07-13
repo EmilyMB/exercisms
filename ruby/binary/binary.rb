@@ -2,20 +2,20 @@ class Binary
   attr_reader :input
 
   def initialize(binary)
-    @input = only_zeros_and_ones(binary)
+    if only_zeros_and_ones(binary)
+      @input = binary.chars
+    else
+      @input = ['0']
+    end
   end
 
   def to_decimal
-    input.each_with_index.inject(0) do |sum, (value, i)|
-      sum + value.to_i * (2 ** (input.length - i - 1))
+    input.reverse.each_with_index.inject(0) do |sum, (value, i)|
+      sum + value.to_i * (2 ** i)
     end
   end
 
   def only_zeros_and_ones(binary)
-    if binary.delete("01") == ""
-      binary.split("")
-    else
-      ["0"]
-    end
+    binary.delete('01') == ""
   end
 end
