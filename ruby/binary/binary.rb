@@ -1,11 +1,11 @@
 class Binary
   attr_reader :input
 
-  def initialize(binary)
-    if only_zeros_and_ones(binary)
-      @input = binary.chars
-    else
+  def initialize(input)
+    if not_binary(input)
       @input = ['0']
+    else
+      @input = input.chars
     end
   end
 
@@ -15,7 +15,7 @@ class Binary
     end
   end
 
-  def only_zeros_and_ones(binary)
-    binary.delete('01') == ""
+  def not_binary(input)
+    /[^01]/.match(input)
   end
 end
