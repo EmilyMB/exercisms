@@ -6,11 +6,10 @@ class Binary
       @input = input
 
   toDecimal: () ->
-    reverse_input = @input.split('').map(Number).reverse()
-    reverse_input.reduce (prev, curr, index) ->
-      prev + curr * Math.pow(2, index)
+    @input.split('').map(Number).reduce (prev, curr) ->
+      prev * 2 + curr
 
 invalidBinary = (input) ->
-  input.replace(/[01]/g, '')
+  /[^01]/.test(input)
 
 module.exports = Binary
