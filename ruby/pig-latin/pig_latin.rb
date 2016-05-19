@@ -1,5 +1,11 @@
 class PigLatin
+  VOWELS = ["a", "e", "i", "o", "u"]
+
   def self.translate(input)
+    input.split.map { |word| self.translate_each(word) }.join(" ")
+  end
+
+  def self.translate_each(input)
     @input = input
     move_consonants_to_end(@input)
     add_ay_postfix(@input)
@@ -12,7 +18,7 @@ class PigLatin
     end
 
     def self.move_consonants_to_end(input)
-      return if first_letter_is_a_vowel
+      return if first_letter_is_a_vowel || first_letter_is_vowellike
       if starts_with_qu
         @input = "#{input[2..-1]}qu"
       elsif starts_with_Xqu
@@ -23,7 +29,11 @@ class PigLatin
     end
 
     def self.first_letter_is_a_vowel
-      ["a", "e", "i", "o", "u"].include?(@input[0])
+      VOWELS.include?(@input[0])
+    end
+
+    def self.first_letter_is_vowellike
+      starts_with_x_or_y && second_letter_is_a_consonant
     end
 
     def self.first_vowel_position
@@ -36,5 +46,13 @@ class PigLatin
 
     def self.starts_with_Xqu
       @input[1..2] == "qu"
+    end
+
+    def self.starts_with_x_or_y
+      @input[0] == "x" || @input[0] == "y"
+    end
+
+    def self.second_letter_is_a_consonant
+      !VOWELS.include?(@input[1])
     end
 end
